@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  workflow:
+    build: ./backend/workflow
+    ports:
+      - "8000:8000"
+
+  reasoning:
+    build: ./backend/reasoning
+    ports:
+      - "8001:8000"
+
+  alignment:
+    build: ./backend/alignment
+    ports:
+      - "8002:8000"
+
+  memory:
+    build: ./backend/memory
+    ports:
+      - "8003:8000"
+
+  cognitive_graph:
+    build: ./backend/cognitive_graph
+    ports:
+      - "8004:8000"
+
+  heatmaps:
+    build: ./backend/heatmaps
+    ports:
+      - "8005:8000"
+
+  timeline:
+    build: ./backend/timeline
+    ports:
+      - "8006:8000"
