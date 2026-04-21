@@ -6,6 +6,7 @@ import DecisionPanel from "./panels/DecisionPanel";
 import MemoryPanel from "./panels/MemoryPanel";
 import PipelinePanel from "./panels/PipelinePanel";
 import HivePanel from "./panels/HivePanel";
+import Morphogenesis3D from "./panels/Morphogenesis3D";
 
 const App = {
   components: {
@@ -14,17 +15,42 @@ const App = {
     DecisionPanel,
     MemoryPanel,
     PipelinePanel,
-    HivePanel
+    HivePanel,
+    Morphogenesis3D
+  },
+  data() {
+    return {
+      activeTab: "cognitive"
+    };
   },
   template: `
-    <div>
+    <div class="cockpit">
       <h1>LLM Organism Cockpit</h1>
-      <AttentionPanel />
-      <SymbolicPanel />
-      <DecisionPanel />
-      <MemoryPanel />
-      <PipelinePanel />
-      <HivePanel />
+      <nav class="tabs">
+        <button @click="activeTab='cognitive'" :class="{active: activeTab==='cognitive'}">Cognitive Stack</button>
+        <button @click="activeTab='pipeline'" :class="{active: activeTab==='pipeline'}">Pipelines</button>
+        <button @click="activeTab='hive'" :class="{active: activeTab==='hive'}">Hive / Swarm</button>
+        <button @click="activeTab='morpho'" :class="{active: activeTab==='morpho'}">3D Morphogenesis</button>
+      </nav>
+
+      <section v-if="activeTab==='cognitive'" class="grid">
+        <AttentionPanel />
+        <SymbolicPanel />
+        <DecisionPanel />
+        <MemoryPanel />
+      </section>
+
+      <section v-if="activeTab==='pipeline'">
+        <PipelinePanel />
+      </section>
+
+      <section v-if="activeTab==='hive'">
+        <HivePanel />
+      </section>
+
+      <section v-if="activeTab==='morpho'">
+        <Morphogenesis3D />
+      </section>
     </div>
   `
 };
