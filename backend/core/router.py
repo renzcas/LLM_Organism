@@ -66,6 +66,7 @@ class Router:
         if not isinstance(signal, dict):
             raise ValueError("Router received non-dict signal")
 
+        # Default target is the conscious core
         target = signal.get("target", "conscious_agent_core")
 
         # Reflex fast-path
