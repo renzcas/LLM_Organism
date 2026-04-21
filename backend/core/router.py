@@ -24,6 +24,7 @@ from backend.mind.field_matrix.field_matrix import FieldMatrix
 from backend.mind.neural_spine.neural_spine import NeuralSpine
 from backend.mind.cognitive_graph.graph_engine import CognitiveGraphEngine
 from backend.mind.conscious_agent.core import ConsciousAgentCore
+from backend.mind.cortex_bridge.bridge import CortexBridge
 
 
 class Router:
@@ -54,6 +55,7 @@ class Router:
             "neural_spine": NeuralSpine(),
             "cognitive_graph_engine": CognitiveGraphEngine(),
             "conscious_agent_core": ConsciousAgentCore(),
+            "cortex_bridge": CortexBridge(),
         }
 
     def route(self, signal: Dict[str, Any]) -> OrganOutput:
