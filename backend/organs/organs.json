@@ -1,0 +1,41 @@
+{
+  "name": "attention",
+  "module": "backend.organs.attention",
+  "class": "AttentionOrgan",
+  "active": true
+}
+
+{
+  "name": "symbolic",
+  "module": "backend.organs.symbolic",
+  "class": "SymbolicOrgan",
+  "active": true
+}
+
+{
+  "name": "decision",
+  "module": "backend.organs.decision",
+  "class": "DecisionOrgan",
+  "active": true
+}
+
+{
+  "name": "memory",
+  "module": "backend.organs.memory",
+  "class": "MemoryOrgan",
+  "active": true
+}
+
+{
+  "name": "pipeline",
+  "module": "backend.organs.pipeline",
+  "class": "PipelineOrgan",
+  "active": true
+}
+
+{
+  "name": "hive",
+  "module": "backend.organs.hive",
+  "class": "HiveRegistry",
+  "active": true
+}
