@@ -1,15 +1,21 @@
 from fastapi import APIRouter
 from backend.organs.organism import Organism
+from backend.organs.network_intel.api import router as network_intel_router
 
 # Initialize organism (loads all organs from organs.json)
 organism = Organism()
 
+# Main router for all organ endpoints
 router = APIRouter()
 
-# ---------------------------
-# Attention Organ Endpoints
-# ---------------------------
+# ---------------------------------------------------------
+# Include Network Intelligence Organ (NEW)
+# ---------------------------------------------------------
+router.include_router(network_intel_router)
 
+# ---------------------------------------------------------
+# Attention Organ Endpoints
+# ---------------------------------------------------------
 @router.post("/attention/compute")
 async def attention_compute(payload: dict):
     organ = organism.get("attention")
@@ -24,17 +30,16 @@ async def attention_health():
         return {"error": "AttentionOrgan not loaded"}
     return organ.health()
 
-# ---------------------------
+# ---------------------------------------------------------
 # Organism Health Endpoint
-# ---------------------------
-
+# ---------------------------------------------------------
 @router.get("/organism/health")
 async def organism_health():
     return organism.health()
-# ---------------------------
-# Symbolic Organ Endpoints
-# ---------------------------
 
+# ---------------------------------------------------------
+# Symbolic Organ Endpoints
+# ---------------------------------------------------------
 @router.post("/symbolic/compute")
 async def symbolic_compute(payload: dict):
     organ = organism.get("symbolic")
@@ -48,10 +53,10 @@ async def symbolic_health():
     if not organ:
         return {"error": "SymbolicOrgan not loaded"}
     return organ.health()
-# ---------------------------
-# Decision Organ Endpoints
-# ---------------------------
 
+# ---------------------------------------------------------
+# Decision Organ Endpoints
+# ---------------------------------------------------------
 @router.post("/decision/compute")
 async def decision_compute(payload: dict):
     organ = organism.get("decision")
@@ -65,10 +70,10 @@ async def decision_health():
     if not organ:
         return {"error": "DecisionOrgan not loaded"}
     return organ.health()
-# ---------------------------
-# Memory Organ Endpoints
-# ---------------------------
 
+# ---------------------------------------------------------
+# Memory Organ Endpoints
+# ---------------------------------------------------------
 @router.post("/memory/store")
 async def memory_store(payload: dict):
     organ = organism.get("memory")
@@ -90,10 +95,9 @@ async def memory_health():
         return {"error": "MemoryOrgan not loaded"}
     return organ.health()
 
-# ---------------------------
+# ---------------------------------------------------------
 # Pipeline Organ Endpoints
-# ---------------------------
-
+# ---------------------------------------------------------
 @router.post("/pipeline/run")
 async def pipeline_run(payload: dict):
     organ = organism.get("pipeline")
@@ -108,10 +112,9 @@ async def pipeline_health():
         return {"error": "PipelineOrgan not loaded"}
     return organ.health()
 
-# ---------------------------
+# ---------------------------------------------------------
 # Hive Registry Endpoints
-# ---------------------------
-
+# ---------------------------------------------------------
 @router.post("/hive/register")
 async def hive_register(payload: dict):
     organ = organism.get("hive")
@@ -132,10 +135,3 @@ async def hive_list():
     if not organ:
         return {"error": "HiveRegistry not loaded"}
     return organ.list()
-
-@router.get("/hive/health")
-async def hive_health():
-    organ = organism.get("hive")
-    if not organ:
-        return {"error": "HiveRegistry not loaded"}
-    return organ.health()
