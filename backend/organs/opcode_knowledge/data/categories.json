@@ -1,0 +1,8 @@
+{
+  "compare": ["cmp", "test"],
+  "branch": ["je", "jne", "jg", "jl", "jmp"],
+  "data_move": ["mov", "lea"],
+  "arith": ["add", "sub"],
+  "logic": ["and", "or", "xor"],
+  "shift": ["shl", "shr"]
+}

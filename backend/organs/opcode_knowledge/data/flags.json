@@ -1,0 +1,6 @@
+{
+  "cmp": ["ZF", "SF", "OF", "CF", "PF"],
+  "test": ["ZF", "SF", "PF"],
+  "add": ["CF", "OF", "SF", "ZF", "AF", "PF"],
+  "sub": ["CF", "OF", "SF", "ZF", "AF", "PF"]
+}
