@@ -1,35 +1,35 @@
-import React, { useState } from "react";
-import axios from "axios";
-import OpcodeCard from "./OpcodeCard";
+import { useState } from "react";
 
 export default function OpcodeSearchPanel() {
   const [mnemonic, setMnemonic] = useState("");
   const [result, setResult] = useState(null);
 
-  const search = async () => {
-    if (!mnemonic.trim()) return;
-    const res = await axios.post("/opcodes/lookup", {
-      mnemonic,
-      mode: "x86_64"
+  async function searchOpcode() {
+    const res = await fetch("http://localhost:8000/opcode/search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ mnemonic })
     });
-    const first = (res.data.results || [])[0] || null;
-    setResult(first);
-  };
+
+    const data = await res.json();
+    setResult(data);
+  }
 
   return (
-    <div>
+    <div style={{ padding: 20 }}>
       <h2>Opcode Search</h2>
+
       <input
         value={mnemonic}
-        onChange={e => setMnemonic(e.target.value)}
-        placeholder="cmp, mov, je..."
-        style={{marginRight:"8px"}}
+        onChange={(e) => setMnemonic(e.target.value)}
+        placeholder="Enter mnemonic (e.g., mov)"
       />
-      <button onClick={search}>Search</button>
 
-      <div style={{marginTop:"16px"}}>
-        <OpcodeCard opcode={result} />
-      </div>
+      <button onClick={searchOpcode}>Search</button>
+
+      {result && (
+        <pre>{JSON.stringify(result, null, 2)}</pre>
+      )}
     </div>
   );
 }
