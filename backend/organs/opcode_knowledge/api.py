@@ -19,3 +19,8 @@ class Normalize(BaseModel):
 @router.post("/normalize")
 def normalize(q: Normalize):
     return {"canonical": db.normalize_ida(q.ida)}
+
+@router.get("/demo")
+def demo():
+    # Hard-coded example: show cmp
+    return {"results": db.lookup("cmp", "x86_64")}

@@ -1,1 +1,98 @@
-[]
+[
+  {
+    "mnemonic": "cmp",
+    "mode": "x86_64",
+    "encodings": [
+      { "opcode": "39 /r", "hex_example": "39 C8" }
+    ],
+    "category": "compare",
+    "flags": ["ZF", "SF", "OF", "CF", "PF"],
+    "operands": [
+      { "type": "r/m32" },
+      { "type": "r32" }
+    ],
+    "description": "Compare two operands by subtracting the second from the first."
+  },
+  {
+    "mnemonic": "mov",
+    "mode": "x86_64",
+    "encodings": [
+      { "opcode": "89 /r", "hex_example": "89 C8" }
+    ],
+    "category": "data_move",
+    "flags": [],
+    "operands": [
+      { "type": "r/m32" },
+      { "type": "r32" }
+    ],
+    "description": "Move data from source to destination."
+  },
+  {
+    "mnemonic": "lea",
+    "mode": "x86_64",
+    "encodings": [
+      { "opcode": "8D /r", "hex_example": "8D 04 25 00 00 00 00" }
+    ],
+    "category": "data_move",
+    "flags": [],
+    "operands": [
+      { "type": "r32" },
+      { "type": "m" }
+    ],
+    "description": "Load effective address of the source into the destination."
+  },
+  {
+    "mnemonic": "add",
+    "mode": "x86_64",
+    "encodings": [
+      { "opcode": "01 /r", "hex_example": "01 C8" }
+    ],
+    "category": "arith",
+    "flags": ["CF", "OF", "SF", "ZF", "AF", "PF"],
+    "operands": [
+      { "type": "r/m32" },
+      { "type": "r32" }
+    ],
+    "description": "Add second operand to first operand."
+  },
+  {
+    "mnemonic": "sub",
+    "mode": "x86_64",
+    "encodings": [
+      { "opcode": "29 /r", "hex_example": "29 C8" }
+    ],
+    "category": "arith",
+    "flags": ["CF", "OF", "SF", "ZF", "AF", "PF"],
+    "operands": [
+      { "type": "r/m32" },
+      { "type": "r32" }
+    ],
+    "description": "Subtract second operand from first operand."
+  },
+  {
+    "mnemonic": "je",
+    "mode": "x86_64",
+    "encodings": [
+      { "opcode": "74 cb", "hex_example": "74 05" }
+    ],
+    "category": "branch",
+    "flags": ["ZF"],
+    "operands": [
+      { "type": "rel8/rel32" }
+    ],
+    "description": "Jump if equal (ZF = 1)."
+  },
+  {
+    "mnemonic": "jne",
+    "mode": "x86_64",
+    "encodings": [
+      { "opcode": "75 cb", "hex_example": "75 05" }
+    ],
+    "category": "branch",
+    "flags": ["ZF"],
+    "operands": [
+      { "type": "rel8/rel32" }
+    ],
+    "description": "Jump if not equal (ZF = 0)."
+  }
+]
